@@ -11,6 +11,7 @@ function readTime(
   customImageTime,
   chineseKoreanReadTime,
   imageTags,
+  language
 ) {
   const { time: imageTime, count: imageCount } = imageReadTime(customImageTime, imageTags, string);
   const strippedString = stripTags(stripWhitespace(string));
@@ -21,7 +22,7 @@ function readTime(
     wordCount,
   } = wordsReadTime(strippedString, customWordTime);
   return {
-    humanizedDuration: humanizeTime(imageTime + wordTime),
+    humanizedDuration: humanizeTime(imageTime + wordTime, language),
     duration: imageTime + wordTime,
     totalWords: wordCount,
     wordTime,

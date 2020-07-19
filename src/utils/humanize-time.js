@@ -5,13 +5,14 @@
  *
  * */
 
-function humanizeTime(time) {
+function humanizeTime(time, language) {
+  language = (typeof language !== 'undefined') ?  language : 'ko';
   if (time < 0.5) {
-    return 'less than a minute';
+    return language === 'ko' ? '1분 미만' : 'Less than a minute';
   } if (time >= 0.5 && time < 1.5) {
-    return '1 minute';
+    return language === 'ko' ? '1분' : '1 minute';
   }
-  return `${Math.ceil(time)} minutes`;
+  return language === 'ko' ? `${Math.ceil(time)} 분` : `${Math.ceil(time)} minutes`;
 }
 
 
