@@ -67,21 +67,5 @@
     "transform": {
       "^.+\\.(js|jsx|ts)$": "babel-jest"
     }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.js": [
-        "eslint --fix",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "**/test/*.js"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
