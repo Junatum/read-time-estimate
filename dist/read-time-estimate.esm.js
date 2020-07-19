@@ -35,7 +35,7 @@ function imageReadTime(customImageTime = IMAGE_READ_TIME, tags = IMAGE_TAGS, str
 
   return {
     time: seconds / 60,
-    count,
+    count
   };
 }
 
@@ -62,7 +62,7 @@ function otherLanguageReadTime(string) {
   return {
     count,
     time,
-    formattedString,
+    formattedString
   };
 }
 
@@ -70,7 +70,7 @@ function wordsReadTime(string, wordsPerMin = WORDS_PER_MIN) {
   const {
     count: characterCount,
     time: otherLanguageTime,
-    formattedString,
+    formattedString
   } = otherLanguageReadTime(string);
   const wordCount = wordsCount(formattedString);
   const wordTime = wordCount / wordsPerMin;
@@ -78,7 +78,7 @@ function wordsReadTime(string, wordsPerMin = WORDS_PER_MIN) {
     characterCount,
     otherLanguageTime,
     wordTime,
-    wordCount,
+    wordCount
   };
 }
 
@@ -127,26 +127,26 @@ function humanizeTime(time, language) {
 function readTime(string, customWordTime, customImageTime, chineseKoreanReadTime, imageTags, language) {
   const {
     time: imageTime,
-    count: imageCount,
+    count: imageCount
   } = imageReadTime(customImageTime, imageTags, string);
   const strippedString = stripTags(stripWhitespace(string));
   const {
     characterCount,
     otherLanguageTime,
     wordTime,
-    wordCount,
+    wordCount
   } = wordsReadTime(strippedString, customWordTime);
   return {
-    humanizedDuration: humanizeTime(imageTime + wordTime, language),
+    humanizedDuration: humanizeTime(imageTime + otherLanguageTime, language),
     duration: imageTime + wordTime,
     totalWords: wordCount,
     wordTime,
     totalImages: imageCount,
     imageTime,
     otherLanguageTimeCharacters: characterCount,
-    otherLanguageTime,
+    otherLanguageTime
   };
 }
 
 export default readTime;
-// # sourceMappingURL=read-time-estimate.esm.js.map
+//# sourceMappingURL=read-time-estimate.esm.js.map

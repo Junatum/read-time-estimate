@@ -22,7 +22,7 @@ function readTime(
     wordCount,
   } = wordsReadTime(strippedString, customWordTime);
   return {
-    humanizedDuration: humanizeTime(imageTime + wordTime, language),
+    humanizedDuration: humanizeTime(imageTime + otherLanguageTime, language),
     duration: imageTime + wordTime,
     totalWords: wordCount,
     wordTime,

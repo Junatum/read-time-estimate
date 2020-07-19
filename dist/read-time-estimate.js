@@ -1,8 +1,9 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory()
-    : typeof define === 'function' && define.amd ? define(factory)
-      : (global = global || self, global.speedometer = factory());
-}(this, (() => {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global.speedometer = factory());
+}(this, (function () { 'use strict';
+
   /* https://help.medium.com/hc/en-us/articles/214991667-Read-time */
 
   /* https://blog.medium.com/read-time-and-you-bc2048ab620c */
@@ -40,7 +41,7 @@
 
     return {
       time: seconds / 60,
-      count,
+      count
     };
   }
 
@@ -67,7 +68,7 @@
     return {
       count,
       time,
-      formattedString,
+      formattedString
     };
   }
 
@@ -75,7 +76,7 @@
     const {
       count: characterCount,
       time: otherLanguageTime,
-      formattedString,
+      formattedString
     } = otherLanguageReadTime(string);
     const wordCount = wordsCount(formattedString);
     const wordTime = wordCount / wordsPerMin;
@@ -83,7 +84,7 @@
       characterCount,
       otherLanguageTime,
       wordTime,
-      wordCount,
+      wordCount
     };
   }
 
@@ -132,27 +133,28 @@
   function readTime(string, customWordTime, customImageTime, chineseKoreanReadTime, imageTags, language) {
     const {
       time: imageTime,
-      count: imageCount,
+      count: imageCount
     } = imageReadTime(customImageTime, imageTags, string);
     const strippedString = stripTags(stripWhitespace(string));
     const {
       characterCount,
       otherLanguageTime,
       wordTime,
-      wordCount,
+      wordCount
     } = wordsReadTime(strippedString, customWordTime);
     return {
-      humanizedDuration: humanizeTime(imageTime + wordTime, language),
+      humanizedDuration: humanizeTime(imageTime + otherLanguageTime, language),
       duration: imageTime + wordTime,
       totalWords: wordCount,
       wordTime,
       totalImages: imageCount,
       imageTime,
       otherLanguageTimeCharacters: characterCount,
-      otherLanguageTime,
+      otherLanguageTime
     };
   }
 
   return readTime;
+
 })));
-// # sourceMappingURL=read-time-estimate.js.map
+//# sourceMappingURL=read-time-estimate.js.map
